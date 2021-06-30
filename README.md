@@ -3,20 +3,24 @@
 
 ## What is Sceneform?
 
-It’s a plugin to make more straightforward an implementation of ARCore, without the complexity of OpenGL.
+It’s a plugin to make an implementation of **ARCore** more straightforward, without the complexity of OpenGL.
 You can make a realistic 3D scene in a few minutes with this high level API.
 
 ## How to start
 
 First at all we need set up a new project. Let’s start with the dependencies.
  
-In the root build.gradle, add the class path to the plugin:
+In the root `build.gradle`, add the class path to the plugin:
 
-`classpath 'com.google.ar.sceneform:plugin:1.15.0’`
+```
+classpath 'com.google.ar.sceneform:plugin:1.15.0’
+```
 
-And in the app build.gradle, add the plugin:
+And in the app `build.gradle`, add the plugin:
 
-`apply plugin: 'com.google.ar.sceneform.plugin’`
+```
+apply plugin: 'com.google.ar.sceneform.plugin’
+```
 
 and the dependencies:
 
@@ -27,7 +31,7 @@ implementation 'com.google.ar.sceneform:core:1.15.0'
 implementation "com.google.ar.sceneform:animation:1.15.0"
 ```
 
-Finally add the AR camera fragment provided by Sceneform to your main_activity layout:
+Finally add the AR camera fragment provided by Sceneform to your `main_activity` layout:
 
 ```
 <fragment
@@ -43,14 +47,15 @@ Now we have our starter setup!
 
 In order to add a 3D model, you should have one. To do it you can download one from [poly](https://poly.google.com/) or [sketchfab](https://sketchfab.com/).
 
-In this case we will use poly. Choose the model who you like and download de obj file. I choose a chair.
+In this case we will use poly. Choose the model you like and download de obj file. I choose a chair.
 Inside the app folder, make another folder called models and place de obj there.
 
-Well, to create de sceneform model we have 2 ways. If you have and older Android Studio version you can install a plugin from Preferences>Plugins and searching Google Sceneform Tools (Beta). After that simply Right click the 3D model source asset and select Import Sceneform Asset to begin the import process and click Finish to begin the import process.
+Well, to create de sceneform model we have 2 ways. If you have and older **Android Studio** version you can install a plugin from **Preferences>Plugins** and search **Google Sceneform Tools (Beta)**. After that simply right click the 3D model source asset and select Import Sceneform Asset to begin the import process. Click Finish to begin the import process.
 
-But if you have a newest Android Studio version you need do it manually, just like this:
+But if you have a newest **Android Studio** version you need do it manually, just like this:
 
-In the app build.gralde, after all, write: 
+In the app `build.gradle`, after all, write:
+
 ```
 sceneform.asset(
         'models/Chair.obj',         // —> the path to the 3D model
@@ -61,13 +66,14 @@ sceneform.asset(
 ```
 
 and rebuild the app.
-This should create the new files Chair.sfa in the models folder and chair.sfb in the raw resources.
+
+This should create the new files `Chair.sfa` in the models folder and `chair.sfb` in the raw resources.
 
 Now we are ready to display it on the screen.
 
-Put the model on the scene
+## Put the model on the scene
 
-That is very easy, firstly we need cast the fragment to an ArFragment, like this:
+That is very easy, firstly we need cast the fragment to an `ArFragment`, like this:
 
 ```
  override fun onCreate(savedInstanceState: Bundle?) {
