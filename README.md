@@ -50,14 +50,14 @@ In order to add a 3D model, you should have one. To do it you can download one f
 In this case we will use poly. Choose the model you like and download de obj file. I choose a chair.
 Inside the app folder, make another folder called models and place de obj there.
 
-()[images/download-obj.png]
-()[images/models-folder.png]
+![](images/download-obj.png)
+![](images/models-folder.png)
 
 Well, to create de sceneform model we have 2 ways. If you have and older **Android Studio** version you can install a plugin from **Preferences>Plugins**
 and search **Google Sceneform Tools (Beta)**. After that simply right click the 3D model source asset and select Import Sceneform Asset to begin the import process.
 Click Finish to begin the import process.
 
-()[images/import-sceneform.png]
+![](images/import-sceneform.png)
 
 But if you have a newest **Android Studio** version you need do it manually, just like this:
 
@@ -123,7 +123,7 @@ That's all!
 
 Here is our application working.
 
-()[images/ezgif.com-gif-maker.gif]
+![](images/ezgif.com-gif-maker.gif)
 
 ## Bonus 1 - Running AR Apps in the Emulator
 
