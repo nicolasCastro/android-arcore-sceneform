@@ -50,7 +50,14 @@ In order to add a 3D model, you should have one. To do it you can download one f
 In this case we will use poly. Choose the model you like and download de obj file. I choose a chair.
 Inside the app folder, make another folder called models and place de obj there.
 
-Well, to create de sceneform model we have 2 ways. If you have and older **Android Studio** version you can install a plugin from **Preferences>Plugins** and search **Google Sceneform Tools (Beta)**. After that simply right click the 3D model source asset and select Import Sceneform Asset to begin the import process. Click Finish to begin the import process.
+()[images/download-obj.png]
+()[images/models-folder.png]
+
+Well, to create de sceneform model we have 2 ways. If you have and older **Android Studio** version you can install a plugin from **Preferences>Plugins**
+and search **Google Sceneform Tools (Beta)**. After that simply right click the 3D model source asset and select Import Sceneform Asset to begin the import process.
+Click Finish to begin the import process.
+
+()[images/import-sceneform.png]
 
 But if you have a newest **Android Studio** version you need do it manually, just like this:
 
@@ -95,7 +102,7 @@ arFragment.setOnTapArPlaneListener { hitResult, plane, motionEvent ->
 	CompletableFuture
 		.allOf(modelRendedable)
     		.thenAccept { 
-			addNode(hitResult.createAnchor(), model)
+			addNode(hitResult.createAnchor(), modelRendedable.get())
 		}
 }
 ```
@@ -107,14 +114,45 @@ private fun addNode(anchor: Anchor, model: ModelRenderable, view: ViewRenderable
     val node = TransformableNode(arFragment.transformationSystem).apply {
         renderable = model
         setParent(anchorNode)
-        getCurrentScene().addChild(anchorNode)
+        arFragment.arSceneView.scene.addChild(anchorNode)
         select()
 }
 ```
 
 That's all! 
 
-Here is our app wotking as well.
+Here is our application working.
+
+()[images/ezgif.com-gif-maker.gif]
+
+## Bonus 1 - Running AR Apps in the Emulator
+
+To do it you might download the ARCore SDK apk from [here](https://github.com/google-ar/arcore-android-sdk/releases)
+and install it in your emulator running this command:
+
+```
+$ adb install -r /path_to_the_apk/Google_Play_Services_for_AR_1.25_x86_for_emulator.apk
+```
+
+## Bonus 2 - Resizing the 3D model
+
+Well, in the sfa file you should see a model node. Inside it is the scale value.
+Just modify it, rebuild and run your app.
+
+```
+model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'models/Chair.obj',
+    name: 'Chair',
+    recenter: 'root',
+    scale: 0.19659799999999999
+}
+```
 
 Check the complete code in the github [repo](https://gitlab.com/thinkup-public/blogs/android-sceneform-arcore).
 
